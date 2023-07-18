@@ -30,7 +30,8 @@ class NewUsers extends Value
     use SupportsPolling;
 ```
 
-Then in the Dashboard, Resource or Lens `cards` method where you have registered your card you can call `refreshIntervalSeconds` and pass in the number of seconds you want the interval to be between refresh requests.
+Then in the Dashboard, Resource or Lens `cards` method where you have registered your card you can call `refreshIntervalSeconds` and pass in the number of seconds you want the interval to be between refresh requests. You can 
+also pass closure as needed.
 
 ```php
 use App\Nova\Metrics\NewUsers;
@@ -39,6 +40,7 @@ public function cards(NovaRequest $request)
 {
     return [
         NewUsers::make()->refreshIntervalSeconds(30),
+        NewOrders::make()->refreshIntervalSeconds(fn () => 30),
     ];
 }
 ```
@@ -52,6 +54,7 @@ public function cards(NovaRequest $request)
 {
     return [
         NewUsers::make()->refreshIntervalMilliseconds(3000),
+        NewOrders::make()->refreshIntervalMilliseconds(fn () => 3000),
     ];
 }
 ```
