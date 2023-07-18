@@ -51,7 +51,7 @@ use App\Nova\Metrics\NewUsers;
 public function cards(NovaRequest $request)
 {
     return [
-        NewUsers::make()->refreshIntervalMilliseconds(30),
+        NewUsers::make()->refreshIntervalMilliseconds(3000),
     ];
 }
 ```
