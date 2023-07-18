@@ -4,7 +4,7 @@
 [![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/fidum/laravel-nova-metrics-polling/run-tests.yml?branch=main&style=for-the-badge)](https://github.com/fidum/laravel-nova-metrics-polling/actions?query=workflow%3Arun-tests+branch%3Amaster)
 [![Twitter Follow](https://img.shields.io/badge/follow-%40danmasonmp-1DA1F2?logo=twitter&style=for-the-badge)](https://twitter.com/danmasonmp)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+Easily add polling to all your Laravel Nova metrics and cards!
 
 ## Installation
 
@@ -14,38 +14,49 @@ You can install the package via composer:
 composer require fidum/laravel-nova-metrics-polling
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="laravel-nova-metrics-polling-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="laravel-nova-metrics-polling-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="laravel-nova-metrics-polling-views"
-```
-
 ## Usage
 
+Firstly, just add the `SupportsPolling` trait to any of your Metrics or Card classes:
+
 ```php
-$laravelNovaMetricsPolling = new Fidum\LaravelNovaMetricsPolling();
-echo $laravelNovaMetricsPolling->echoPhrase('Hello, Fidum!');
+<?php
+
+namespace App\Nova\Metrics;
+
+use Fidum\LaravelNovaMetricsPolling\Concerns\SupportsPolling;
+
+class NewUsers extends Value
+{
+    use SupportsPolling;
 ```
+
+Then in the Dashboard, Resource or Lens `cards` method where you have registered your card you can call `refreshIntervalSeconds` and pass in the number of seconds you want the interval to be between refresh requests.
+
+```php
+use App\Nova\Metrics\NewUsers;
+
+public function cards(NovaRequest $request)
+{
+    return [
+        NewUsers::make()->refreshIntervalSeconds(30),
+    ];
+}
+```
+
+If preferred, you can call `refreshIntervalMilliseconds` instead and pass in the number of milliseconds you want the interval to be between refresh requests.
+
+```php
+use App\Nova\Metrics\NewUsers;
+
+public function cards(NovaRequest $request)
+{
+    return [
+        NewUsers::make()->refreshIntervalMilliseconds(30),
+    ];
+}
+```
+
+That is it, your cards should now be polling at the specified intervals! :tada:
 
 ## Testing
 
