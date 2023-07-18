@@ -18,8 +18,7 @@
     "require": {
         "php": "^8.1",
         "illuminate/contracts": "^10.0",
-        "laravel/nova": "^4.26",
-        "spatie/laravel-package-tools": "^1.9.2"
+        "laravel/nova": "^4.26"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
