@@ -1,36 +1,26 @@
 <?php
 
-namespace VendorName\Skeleton\Tests;
+namespace Fidum\LaravelNovaMetricsPolling\Tests;
 
+use Fidum\LaravelNovaMetricsPolling\LaravelNovaMetricsPollingServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use VendorName\Skeleton\SkeletonServiceProvider;
 
 class TestCase extends Orchestra
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'VendorName\\Skeleton\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
-    }
+    public array $meta = [];
 
     protected function getPackageProviders($app)
     {
         return [
-            SkeletonServiceProvider::class,
+            LaravelNovaMetricsPollingServiceProvider::class,
         ];
     }
 
-    public function getEnvironmentSetUp($app)
+    protected function withMeta(array $meta)
     {
-        config()->set('database.default', 'testing');
+        $this->meta = array_merge($this->meta ?? [], $meta);
 
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_skeleton_table.php.stub';
-        $migration->up();
-        */
+        return $this;
     }
 }
