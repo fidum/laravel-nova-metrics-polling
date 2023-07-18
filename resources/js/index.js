@@ -5,14 +5,26 @@ Nova.bootingCallbacks.unshift((app) => {
             pollingListener: null,
         }),
         mounted() {
-            if (this.$props?.card?.pollingInterval && typeof this.fetch === 'function') {
-                this.pollingListener = setInterval(() => {
-                    this.fetch();
-                }, this.$props?.card?.pollingInterval);
-            }
+            this.addCardPollingIntervalListener();
         },
         unmounted() {
-            clearInterval(this.pollingListener);
+            this.removeCardPollingIntervalListener();
         },
+        updated() {
+            this.addCardPollingIntervalListener();
+        },
+        methods: {
+            addCardPollingIntervalListener() {
+                if (this.$props?.card?.pollingInterval && typeof this.fetch === 'function') {
+                    this.removeCardPollingIntervalListener();
+                    this.pollingListener = setInterval(() => {
+                        this.fetch();
+                    }, this.$props?.card?.pollingInterval);
+                }
+            },
+            removeCardPollingIntervalListener() {
+                clearInterval(this.pollingListener);
+            }
+        }
     });
 });
