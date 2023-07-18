@@ -15,11 +15,9 @@ Nova.bootingCallbacks.unshift((app) => {
         },
         methods: {
             addCardPollingIntervalListener() {
+                this.removeCardPollingIntervalListener();
                 if (this.$props?.card?.pollingInterval && typeof this.fetch === 'function') {
-                    this.removeCardPollingIntervalListener();
-                    this.pollingListener = setInterval(() => {
-                        this.fetch();
-                    }, this.$props?.card?.pollingInterval);
+                    this.pollingListener = setInterval(this.fetch, this.$props.card.pollingInterval);
                 }
             },
             removeCardPollingIntervalListener() {
