@@ -35,6 +35,7 @@ also pass closure as needed.
 
 ```php
 use App\Nova\Metrics\NewUsers;
+use App\Nova\Metrics\NewOrders;
 
 public function cards(NovaRequest $request)
 {
@@ -49,6 +50,7 @@ If preferred, you can call `refreshIntervalMilliseconds` instead and pass in the
 
 ```php
 use App\Nova\Metrics\NewUsers;
+use App\Nova\Metrics\NewOrders;
 
 public function cards(NovaRequest $request)
 {
