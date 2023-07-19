@@ -41,8 +41,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Fidum\\LaravelNovaMetricsPolling\\": "src",
-            "Fidum\\LaravelNovaMetricsPolling\\Database\\Factories\\": "database/factories"
+            "Fidum\\LaravelNovaMetricsPolling\\": "src"
         }
     },
     "autoload-dev": {
