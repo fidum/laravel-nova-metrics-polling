@@ -55,8 +55,8 @@ use App\Nova\Metrics\NewOrders;
 public function cards(NovaRequest $request)
 {
     return [
-        NewUsers::make()->refreshIntervalMilliseconds(3000),
-        NewOrders::make()->refreshIntervalMilliseconds(fn () => 3000),
+        NewUsers::make()->refreshIntervalMilliseconds(30000),
+        NewOrders::make()->refreshIntervalMilliseconds(fn () => 30000),
     ];
 }
 ```
