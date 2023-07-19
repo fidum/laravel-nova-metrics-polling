@@ -26,7 +26,7 @@ test('refreshIntervalMilliseconds with 1000 milliseconds sets the polling interv
     ->meta
     ->toBe(['pollingInterval' => 10000]);
 
-test('refreshIntervalMilliseconds with a closure returning 1000 milliseconds sets the polling interval yo 10000 milliseconds')
+test('refreshIntervalMilliseconds with a closure returning 1000 milliseconds sets the polling interval to 1000 milliseconds')
     ->expect(fn () => $this->refreshIntervalMilliseconds(fn () => 1000))
     ->meta
     ->toBe(['pollingInterval' => 1000]);
