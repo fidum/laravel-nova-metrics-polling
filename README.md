@@ -31,7 +31,7 @@ class NewUsers extends Value
 ```
 
 Then in the Dashboard, Resource or Lens `cards` method where you have registered your card you can call `refreshIntervalSeconds` and pass in the number of seconds you want the interval to be between refresh requests. You can 
-also pass closure as needed.
+also pass a closure as needed.
 
 ```php
 use App\Nova\Metrics\NewUsers;
