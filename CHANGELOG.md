@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-nova-metrics-polling` will be documented in this file.
 
+## 1.0.4 - 2025-02-24
+
+### What's Changed
+
+* Add support for laravel 12 by @niekdemelker in https://github.com/fidum/laravel-nova-metrics-polling/pull/20
+
+**Full Changelog**: https://github.com/fidum/laravel-nova-metrics-polling/compare/1.0.3...1.0.4
+
 ## 1.0.3 - 2024-12-27
 
 ### What's Changed
