@@ -16,12 +16,13 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: '8.4'
           coverage: none
 
       - name: Configure Composer
         run: |
           composer config "http-basic.nova.laravel.com" "${{ secrets.NOVA_USERNAME }}" "${{ secrets.NOVA_PASSWORD }}"
+          # TODO: Bump to ^5.0 once a Nova 5.x licence key is available
           composer require "laravel/nova:4.33.2"
 
       - name: Install composer dependencies
